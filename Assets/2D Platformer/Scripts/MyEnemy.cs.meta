@@ -5,7 +5,11 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Player: {fileID: 1244940152763544, guid: efa51e2c87944684bb2a00c2fb21142d, type: 2}
+  - Fireball: {fileID: 50647436169968618, guid: 0211e23b964193b4fbbb963c170155fd,
+      type: 2}
+  - Bazooka: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

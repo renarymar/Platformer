@@ -5,40 +5,58 @@ using UnityEngine;
 
 public class MyEnemy : MonoBehaviour
 {
-
-
+    
     #region Поля
 
-    private Vector3 StartPos;
-    private Vector3 MovementDirection;
+    private Vector2 StartPos;
     [SerializeField] private GameObject Player;
     [SerializeField] private Rigidbody2D Fireball;
     [SerializeField] private GameObject Bazooka;
     [SerializeField] private float Fireball_Speed;
     [SerializeField] private LayerMask mask;
-    private Vector2 PlayerDirection;
-    private bool shooting = false;
+    [SerializeField] private float PatrolSpeed = 2f;
     private enum Mode { attack, search };
     private Mode CurrentMode;
-    int HP;
+
+    private enum Direction { left, right };
+    private Direction PlayerDirection;
+
+    [SerializeField] private int HP;
+    private float shotInterval = 1.5f;
+    private float timeOfLastShot;
+    Rigidbody2D rb;
+
+
     #endregion
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         CurrentMode = Mode.search;
         StartPos = transform.position;
+
     }
 
     void FixedUpdate()
     {
         if (CurrentMode == Mode.search) Search();
         if (CurrentMode == Mode.attack) Attack();
+
+        if (IsWithinRange())
+            Patrol();
+        else
+        {
+            PatrolSpeed = -PatrolSpeed;
+            Patrol();
+        }
     }
-    
+
     private void Attack()
     {
-        Debug.Log("Attack");
-        if (IsTarget()) Shoot();
+        if (IsTarget())
+        {
+            Shoot();
+        }
         else
         {
             CurrentMode = Mode.search;
@@ -47,19 +65,26 @@ public class MyEnemy : MonoBehaviour
 
     private void Search()
     {
-        Debug.Log("Search");
-        if (IsTarget()) CurrentMode = Mode.attack;
+        if (IsTarget() && Reloaded())
+            CurrentMode = Mode.attack;
         else
-        {
             CurrentMode = Mode.search;
-        }
     }
 
     private void Shoot()
     {
-        Rigidbody2D RB_fireball = Instantiate(Fireball, Bazooka.transform.position, Quaternion.Euler(new Vector3(0, 0, 0))) as Rigidbody2D;
-        RB_fireball.velocity = new Vector2(transform.position.x < Player.transform.position.x ? Fireball_Speed : -Fireball_Speed, 0);
-        Reload();
+        if (PlayerDirection == Direction.left)
+        {
+            Rigidbody2D RB_fireball = Instantiate(Fireball, Bazooka.transform.position, Quaternion.Euler(new Vector3(0, transform.position.x < Player.transform.position.x ? 0 : 180, 0))) as Rigidbody2D;
+            RB_fireball.velocity = new Vector2(-Fireball_Speed, 0);
+        }
+        else if (PlayerDirection == Direction.right)
+        {
+            Rigidbody2D RB_fireball = Instantiate(Fireball, Bazooka.transform.position, Quaternion.Euler(new Vector3(0, 0, 0))) as Rigidbody2D;
+            RB_fireball.velocity = new Vector2(Fireball_Speed, 0);
+        }
+        timeOfLastShot = Time.time;
+
         CurrentMode = Mode.search;
     }
 
@@ -70,29 +95,43 @@ public class MyEnemy : MonoBehaviour
         Debug.DrawRay(transform.position, Vector2.right * 2, Color.red);
         Debug.DrawRay(transform.position, Vector2.left * 2, Color.red);
 
-        if (hit_left || hit_right)
+        if (hit_left)
         {
+            PlayerDirection = Direction.left;
             return true;
         }
-        else
+        else if (hit_right)
         {
-            return false;
+            PlayerDirection = Direction.right;
+            return true;
         }
+        return false;
     }
 
-    private void Reload()
+    private bool Reloaded()
     {
-
+        if (Time.time > timeOfLastShot + shotInterval)
+            return true;
+        return false;
     }
 
     private void Patrol()
     {
+        //Debug.Log(PatrolSpeed);
+        rb.velocity = new Vector2(PatrolSpeed, 0);
 
+    }
+
+    private bool IsWithinRange()
+    {
+        if (Vector2.Distance(StartPos, transform.position) < 2)
+            return true;
+        return false;
     }
 
     public void Hurt(int Damage)
     {
-        HP--;
+        HP = -Damage;
         if (HP <= 0)
             Death();
     }

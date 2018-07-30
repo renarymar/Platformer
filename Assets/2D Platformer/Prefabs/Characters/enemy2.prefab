@@ -271,3 +271,4 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 512
+  PatrolSpeed: 2

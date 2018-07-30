@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class BasicController : MonoBehaviour {
 
-    [SerializeField] private float Acceleration;				//character's speed
+    [SerializeField] private float Acceleration;                //character's speed
     [SerializeField] private GameObject Bomb;
-    [SerializeField] private GameObject StartBomb;  
+    [SerializeField] private GameObject StartBomb;
     [SerializeField] private float jumpForce;
-    [SerializeField] public int HP;		
+    [SerializeField] public int HP;
 
 
 
     private Transform groundCheck;          // A position marking where to check if the player is grounded.
-    private bool grounded = false;			// Whether or not the player is grounded.
+    private bool grounded = false;          // Whether or not the player is grounded.
 
     bool jump = false;
     bool moving = false;
 
-    [HideInInspector] public bool facingRight = true;			// For determining which way the player is currently facing.
-    private	Vector3 Dir = new Vector3(0,0,0);					//character's moving direction
+    [HideInInspector] public bool facingRight = true;           // For determining which way the player is currently facing.
+    private Vector3 Dir = new Vector3(0, 0, 0);                 //character's moving direction
 
     private void Awake()
     {
@@ -61,8 +61,8 @@ public class BasicController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate () 
-	{
+    void FixedUpdate()
+    {
         if (moving) Move();
         if (jump) Jump();
     }
@@ -92,16 +92,16 @@ public class BasicController : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void Flip ()
-	{
-		// Switch the way the player is labelled as facing.
-		facingRight = !facingRight;
+    void Flip()
+    {
+        // Switch the way the player is labelled as facing.
+        facingRight = !facingRight;
 
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
 
    
 }
