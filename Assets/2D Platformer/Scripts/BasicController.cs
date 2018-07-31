@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicController : MonoBehaviour {
+public class BasicController : MonoBehaviour, Character {
 
     [SerializeField] private float Acceleration;                //character's speed
     [SerializeField] private GameObject Bomb;

@@ -18,7 +18,8 @@ public class Weapon : MonoBehaviour {
     {
         if (collision.gameObject.tag == Target.tag)
         {
-            BasicController target = collision.gameObject.GetComponent<BasicController>();
+            Character target = collision.gameObject.GetComponent<Character>();
+
             if (target != null)
             {
                 target.Hurt(Damage);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MyEnemy : MonoBehaviour
+public class MyEnemy : MonoBehaviour, Character
 {
     
     #region Поля
@@ -36,19 +36,19 @@ public class MyEnemy : MonoBehaviour
         StartPos = transform.position;
 
     }
+    private void Update()
+    {
+        if (!IsWithinRange())
+            PatrolSpeed = -PatrolSpeed;
+        Patrol();
+    }
 
     void FixedUpdate()
     {
         if (CurrentMode == Mode.search) Search();
         if (CurrentMode == Mode.attack) Attack();
 
-        if (IsWithinRange())
-            Patrol();
-        else
-        {
-            PatrolSpeed = -PatrolSpeed;
-            Patrol();
-        }
+
     }
 
     private void Attack()

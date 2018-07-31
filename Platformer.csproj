@@ -268,36 +268,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\2D Platformer\Scripts\BackgroundParallax.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\BackgroundPropSpawner.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\BasicController.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\Bomb.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\BombPickup.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\CameraMove.cs" />
+    <Compile Include="Assets\2D Platformer\Scripts\Character.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\Destroyer.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\Enemy.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\FollowPlayer.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\Gun.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\HealthPickup.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\LayBomb.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\LayBombs.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\MyEnemy.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\MyFireball.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\MyRay.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\MyRocket.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\Pauser.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\PickupSpawner.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\PlayerControl.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\Projectile.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\Remover.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\RobotBehaviour.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\Rocket.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\Score.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\ScoreShadow.cs" />
-    <Compile Include="Assets\2D Platformer\Scripts\SetParticleSortingLayer.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\Spawner.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\UI_HP.cs" />
     <Compile Include="Assets\2D Platformer\Scripts\UI_Script.cs" />

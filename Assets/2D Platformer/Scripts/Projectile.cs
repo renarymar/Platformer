@@ -5,14 +5,13 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
     [SerializeField] private float Speed;
-    [SerializeField] private Rigidbody2D Rocket;			//bullet object
+    [SerializeField] private Rigidbody2D Rocket;
     [SerializeField] private GameObject Bazooka;
 
     private BasicController Player;
 
     void Awake()
     {
-        // Setting up the references.
         Player = transform.root.GetComponent<BasicController>();
     }
 
